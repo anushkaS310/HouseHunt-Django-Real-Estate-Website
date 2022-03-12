@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href={% static 'css/homepage.css' %}>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <title>HOME</title>
+</head>
+<body>
+    {% include 'partials/navbar.html'%}
+      <!-- <section></section> -->
+      <div id="home1">
+        <h1 class="primary">
+            WELCOME TO HOUSE HUNT
+        </h1>
+        <p>
+            Your Dream Home Awaits!!
+        </p>
+    </div>
+    <section class="home" id="home">
+
+        <form action="">
+    
+            <h3>find your perfect home</h3>
+    
+            <div class="buttons-container">
+                <a href="#" class="btn">RENT</a>
+                <a href="#" class="btn">BUY</a>
+            </div>
+    
+            <div class="inputBox">
+                <input type="search" name="" placeholder="Type address,locality,area" id="">
+                <!-- <input type="search" name="" placeholder="city" id=""> -->
+                <label for="">City</label>
+                <select name="" id="">
+                    <option value="mumbai">Mumbai</option>
+                    <option value="jaipur">Jaipur</option>
+                    <option value="pune">Pune</option>
+                    <option value="delhi">Delhi</option>
+                    <option value="lucknow">Lucknow</option>
+                    <option value="prayagraj">Prayagraj</option>
+                </select>
+            </div>
+
+            <input type="submit" value="search property" class="btn">
+    
+        </form>
+    
+    </section>
+</body>
+</html>

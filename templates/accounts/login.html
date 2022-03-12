@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href= {% static 'css/login.css' %}>
+    <title>LOGIN PAGE</title>
+</head>
+<body>
+    
+    {% include 'partials/navbar.html'%}
+    <section>
+        <div class="imgBox">
+           <img src={% static 'img/login.jpg' %} alt="loginimg">
+        </div>
+        <div class="contentBox">
+           <div class="formBox">
+               <h2>Login</h2>
+               <form action="backend">
+                    <div class="inputBox">
+                        <span>Username</span>
+                        <input type="text" name="Username">
+                    </div>
+                    <div class="inputBox">
+                        <span>Password</span>
+                        <input type="password" name="Password">
+                    </div>
+                    <div class="remember">
+                        <label><input type="checkbox" name="Remember">Remember me</label>
+                    </div>
+                    <div class="inputBox">
+                        <input type="submit" value="Sign in" name="Sign in">
+                    </div>
+                    <div class="inputBox">
+                        <p>
+                            Don't have an account? <a href="#register">Sign up</a>
+                        </p>
+                    </div>
+               </form>
+               <h3>Login with social media</h3>
+               <ul class="sci">
+                   <!-- <li><img src="linkedinlogo.png"></li> -->
+                   <!-- <li><img src="twitterlogo.jpg"></li> -->
+                   <!-- <li><img src="instagram.jpg"></li> -->
+               </ul>
+           </div>
+        </div>
+    </section>
+</body>
+</html>

@@ -1,0 +1,210 @@
+*{
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+  }
+  body{
+    font-family: montserrat;
+  }
+  nav{
+    background: #0082e6;
+    height: 80px;
+    width: 100%;
+  }
+  label.logo{
+    color: white;
+    font-size: 35px;
+    line-height: 80px;
+    padding: 0 100px;
+    font-weight: bold;
+  }
+  nav ul{
+    float: right;
+    margin-right: 20px;
+  }
+  nav ul li{
+    display: inline-block;
+    line-height: 80px;
+    margin: 0 5px;
+  }
+  nav ul li a{
+    color: white;
+    font-size: 17px;
+    padding: 7px 13px;
+    border-radius: 3px;
+    text-transform: uppercase;
+  }
+  a.active,a:hover{
+    background: #1b9bff;
+    transition: .5s;
+  }
+  .checkbtn{
+    font-size: 30px;
+    color: white;
+    float: right;
+    line-height: 80px;
+    margin-right: 40px;
+    cursor: pointer;
+    display: none;
+  }
+  #check{
+    display: none;
+  }
+  @media (max-width: 952px){
+    label.logo{
+      font-size: 30px;
+      padding-left: 50px;
+    }
+    nav ul li a{
+      font-size: 16px;
+    }
+  }
+  @media (max-width: 858px){
+    .checkbtn{
+      display: block;
+    }
+    ul{
+      position: fixed;
+      width: 100%;
+      height: 100vh;
+      background: #2c3e50;
+      top: 80px;
+      left: -100%;
+      text-align: center;
+      transition: all .5s;
+    }
+    nav ul li{
+      display: block;
+      margin: 50px 0;
+      line-height: 30px;
+    }
+    nav ul li a{
+      font-size: 20px;
+    }
+    a:hover,a.active{
+      background: none;
+      color: #0082e6;
+    }
+    #check:checked ~ ul{
+      left: 0;
+    }
+  }
+
+
+section{
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display:flex;
+} 
+section .imgBox{
+    position: absolute;
+    width: 50%;
+    height: 100%;
+}
+
+section .imgBox::before{
+    content: '';
+        position: absolute;
+        top:0;
+         left:0;
+         width: 100%;
+         height: 100%;
+         background: linear-gradient(225deg,#e91e63,#03a9f4);
+         z-index: 1;
+         mix-blend-mode: screen;
+     } 
+section .imgBox img{
+    position: absolute;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    object-fit: cover;
+}
+
+.contentBox{
+    display: flex;
+    width: 100%;
+    height: 80%;
+    justify-content: center;
+    align-items: center;
+    margin-left: 600px;
+}
+
+section .contentBox .formBox{
+    width:50%;
+}
+
+section .contentBox .formBox h2{
+    color: #607d8b;
+    font-weight: 600;
+    font-size: 1.5em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    border-bottom: 4px solid #ff4584;
+    display: inline-block;
+    letter-spacing: 1px;
+}
+
+section .contentBox .formBox .inputBox{
+    margin-bottom: 20px;
+}
+section .contentBox .formBox .inputBox span{
+    font-size: 16px;
+    margin-bottom: 5px;
+    display: inline-block;
+    color: #607d8b;
+    font-weight: 300;
+    font-size: 16px;
+    letter-spacing: 1px;
+}
+
+section .contentBox .formBox .inputBox input{
+     width: 100%;
+     padding:10px 20px;
+     outline: none;
+     font-weight: 400;
+     border: 1px solid #607d8b;
+     font-size: 16px;
+     letter-spacing: 1px;
+     color:#000203;
+     background:transparent;
+     border-radius: 30px;
+}
+
+section .contentBox .formBox .inputBox input[type="submit"]
+{
+    background:#ff4584;
+    color: #fff;
+    outline: none;
+    border: none;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+section .contentBox .formBox .inputBox input[type="submit"]:hover{
+    background-color:#e91e63
+}
+
+section .contentBox .formBox .remember{
+    margin-bottom: 10px;
+    color: #607d8b;
+    font-weight: 400;
+    font-size: 14px;
+}
+
+section .contentBox .formBox .inputBox p{
+    color: #607d8b;
+}
+
+section .contentBox .formBox .inputBox p a{
+    color: #ff4584;
+
+}
+section .contentBox .formBox .inputBox p a:hover{
+    color: #03a9f4;
+}

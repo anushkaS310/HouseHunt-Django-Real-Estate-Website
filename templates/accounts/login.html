@@ -18,14 +18,16 @@
         <div class="contentBox">
            <div class="formBox">
                <h2>Login</h2>
-               <form action="backend">
+               {% include 'partials/alerts.html' %}
+               <form action="login" method="POST">
+                {% csrf_token %}
                     <div class="inputBox">
                         <span>Username</span>
-                        <input type="text" name="Username">
+                        <input type="text" name="username">
                     </div>
                     <div class="inputBox">
                         <span>Password</span>
-                        <input type="password" name="Password">
+                        <input type="password" name="password">
                     </div>
                     <div class="remember">
                         <label><input type="checkbox" name="Remember">Remember me</label>

@@ -1,11 +1,22 @@
 from django.shortcuts import redirect, render
 from django.contrib import messages
 from django.contrib.auth.models import User
-
+from django.contrib import auth
 def login(request):
-    if request== 'POST':
+    if request.method== 'POST':
+        username=request.POST['username']
+        password=request.POST['password']
+
+        user=auth.authenticate(username=username,password=password)
+        if user is not None:
+            auth.login(request,user)
+            messages.success(request, 'You are now logged in')
+            return redirect('dashboard')
+        else:
+            messages.error(request,"Inavlid details!")
+            return redirect('login')
+    else:
         return render(request,'accounts/login.html')
-    return render(request,'accounts/login.html')
 
 
 def register(request):

@@ -50,3 +50,13 @@ def register(request):
 
 def dashboard(request):
     return render(request,'accounts/dashboard.html')
+
+def logout(request):
+    auth.logout(request)
+    return redirect ('homepage')
+    # print("sara")
+    # if request.method == "POST":
+    #     auth.logout(request)
+    #     print("sara")
+    #     messages.success(request, 'Logout Successful!')
+    #     return redirect('homepage')

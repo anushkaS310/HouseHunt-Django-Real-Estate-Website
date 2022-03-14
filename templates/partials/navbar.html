@@ -6,9 +6,20 @@
     <label class="logo">HOUSE HUNT</label>
     <ul>
         <li><a href={% url 'homepage' %}>HOME</a></li>
+        {% if  user.is_authenticated %}
+        <li><a href={% url 'dashboard' %}>{{user.first_name}}DASHBOARD</a></li>
+        <li><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
+           {% comment %} <li><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
+              form action="{% url 'logout' %}" method="POST">
+                {% csrf_token %}
+                <input type="hidden">
+              </form>  {% endcomment %}
+        {% else %}
         <li><a href={% url 'login' %}>LOGIN</a></li>
         <li><a href={% url 'register' %}>REGISTER</a></li>
-        <li><a href={% url 'dashboard' %}>DASHBOARD</a></li>
-        <li><a href="#contactus">CONTACT US</a></li>
+           
+        {% endif %}
+            <li><a href="#contactus">CONTACT US</a></li>
+
     </ul>
   </nav>

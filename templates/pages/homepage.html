@@ -20,6 +20,7 @@
             Your Dream Home Awaits!!
         </p>
     </div>
+    {% include 'partials/alerts.html'%}
     <section class="home" id="home">
 
         <form action="">
@@ -46,6 +47,10 @@
             </div>
 
             <input type="submit" value="search property" class="btn">
+            <div class="buttons-container">
+                <a href={% url 'upload' %}>Upload</a>
+            </div>
+            
     
         </form>
     

@@ -1,59 +1,87 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href={% static 'css/homepage.css' %}>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
-    <title>HOME</title>
-</head>
-<body>
-    {% include 'partials/navbar.html'%}
-      <!-- <section></section> -->
-      <div id="home1">
-        <h1 class="primary">
-            WELCOME TO HOUSE HUNT
-        </h1>
-        <p>
-            Your Dream Home Awaits!!
-        </p>
-    </div>
-    {% include 'partials/alerts.html'%}
-    <section class="home" id="home">
+{% load humanize %}
+{% block style %}
+<link rel="stylesheet" href={% static 'css/homepage.css' %}>
+{% endblock  %}
+{% block title %}House Hunt{% endblock title %}
+{% block content %}
+<section class="home" id="home">       
+    <form action="{% url 'search' %}">
+            <p>
+                Your Dream Home Awaits!!
+            </p>
+        
+        <p>Find your perfect home</p>
+        
+        <!-- <form action="{% url 'homepage' %}">
+            <div class="buttons-container"></div>
+            <button name="type" type="submit" value="RENT"></button>
+            <button name="type" type="submit" value="BUY"></button>
+        </div>
 
-        <form action="">
-    
-            <h3>find your perfect home</h3>
-    
-            <div class="buttons-container">
-                <a href="#" class="btn">RENT</a>
-                <a href="#" class="btn">BUY</a>
+        </form> -->
+        <div class="buttons-container">
+            <div class="btn">
+                <input type="radio" name="type" id="type1" value="2" checked="checked">
+                <label for="type">RENT</label>
             </div>
-    
-            <div class="inputBox">
-                <input type="search" name="" placeholder="Type address,locality,area" id="">
-                <!-- <input type="search" name="" placeholder="city" id=""> -->
-                <label for="">City</label>
-                <select name="" id="">
-                    <option value="mumbai">Mumbai</option>
-                    <option value="jaipur">Jaipur</option>
-                    <option value="pune">Pune</option>
-                    <option value="delhi">Delhi</option>
-                    <option value="lucknow">Lucknow</option>
-                    <option value="prayagraj">Prayagraj</option>
-                </select>
-            </div>
-
-            <input type="submit" value="search property" class="btn">
-            <div class="buttons-container">
-                <a href={% url 'upload' %}>Upload</a>
+            <div class="btn">
+                <input type="radio" name="type" id="type2" value="1">
+                <label for="type" >BUY</label>
             </div>
             
+            <!-- <a href="#" class="btn">RENT</a>
+            <a href="#" class="btn">BUY</a> -->
+        </div> 
+        
+        <div class="inputBox">
+            <input type="text" name="locality" placeholder="Type address,locality,area" id="locality">   
+            <select name="city" id="city">
+                <option value="" disabled hidden selected>--select--</option>
+                <option value="mumbai">Mumbai</option>
+                <option value="jaipur">Jaipur</option>
+                <option value="pune">Pune</option>
+                <option value="delhi">Delhi</option>
+                <option value="lucknow">Lucknow</option>
+                <option value="prayagraj">Prayagraj</option>
+            </select>
+        </div>
+
+        <input type="submit" value="search property" class="btn" id="btn3">
+     <div class="ask">
+         Do you want to sell/rent a property?
+         <a href={% url 'upload' %}>Upload Here!</a>
+     </div>
+    </form>
     
-        </form>
-    
-    </section>
-</body>
-</html>
+</section>
+
+<section class="services-container">
+
+    <div  id="services">
+        {% for lp in latest_properties %}
+        <div class="box" id="box">
+            <img src="{{lp.photo_main.url}}" alt="error in loading image">    
+            <div id="price">
+                {% if lp.type == "1" %}
+                    <h3>Rs.{{lp.price | intcomma}}</h3>
+                {% else %}
+                    <h3>Rs.{{lp.price | intcomma}} / mo</h3>
+                {% endif %}
+                
+            </div>
+            <div class="location">
+                <h3>{{lp.bathroom}}BHK flat</h3>
+                <p>{{lp.address}},{{ lp.get_state_display }},-{{lp.zipcode}}</p>
+            </div>
+          <a href="{% url 'property' lp.id %}">
+              <button class="bt">View</button>
+          </a>
+        </div>                        
+        {% endfor %}
+    </div>
+</section>
+{% include 'partials/footer.html' %}
+{% endblock content %}
+

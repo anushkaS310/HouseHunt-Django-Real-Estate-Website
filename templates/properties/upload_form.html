@@ -1,28 +1,136 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href={% static 'css/upload_form.css' %}>
-    <title>Upload Form</title>
-</head>
-<body>
-    <form action="upload" method="POST">
-        {% csrf_token %}
-        {% for f  in form %}
-            <div class="form-content invalid">
-                {{ f.label_tag }}
-                <p></p>
-                {{ f }}
-                {{f.errors}}
-            <p></p>
+{% block style %}
+<link rel="stylesheet" href={% static 'css/upload_form.css' %}>
+{% endblock  %}
+{% block title %}Upload Property{% endblock title %}
+{% block content %}
 
-            </div>
-        {% endfor %}
-        <button type="submit">Submit</button>
-    </form>
-</body>
-</html>
+    <section class="home" id="home"> 
+         {% comment %} <div class="imgBox">
+        <img src={% static 'img/login.jpg' %} alt="loginimg">
+        </div>  {% endcomment %}
+        {% comment %} <div class="contentBox">
+           <div class="formBox"> {% endcomment %}
+
+               <form action="upload" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <h1>Property Details</h1>
+                {% include 'partials/alerts.html' %}
+                
+                <div class="inputBox" class="heading">
+                    <span >{{ form.type.label_tag }}</span>{{ form.type }}
+                </div> 
+                  
+                <div class="inputBox">
+                        <span>{{ form.title.label_tag }}</span>
+                        {{ form.title }}
+                </div>
+                <div class="inputBox">
+                    <span>{{ form.address.label_tag }}</span>
+                    {{ form.address }}
+                </div>
+                <div class="inputBox">
+                    <span>{{ form.city.label_tag }}</span>
+                    {{ form.city }}
+                </div>
+                <div class="inputBox">
+                    <span>{{ form.state.label_tag }}</span>
+                    {{ form.state }}
+                </div>
+                <div class="inputBox">
+                    <span>{{ form.zipcode.label_tag }}</span>
+                    {{ form.zipcode }}
+                </div>
+                <div class="inputBox">
+                    <span>{{ form.description.label_tag }}</span>
+                    {{ form.description }}
+                </div>
+                <div class="inputBox">
+                    <span>{{ form.price.label_tag }}</span>
+                    {{ form.price }}
+                </div>
+                <div class="inputBox">
+                    <span>{{ form.apartment_type.label_tag }}</span>
+                    {{ form.apartment_type }}
+                </div>
+                <div class="inputBox">
+                    <span>{{ form.availibility.label_tag }}</span>
+                    {{ form.availibility }}
+                </div>
+                <div class="inputBox">
+                    <span>{{ form.bathroom.label_tag }}</span>
+                    {{ form.bathroom }}
+                    
+                </div>
+                <div class="checks">
+                    <div class="inputBox" >
+                        <span>{{ form.garage.label_tag }}</span>
+                        {{ form.garage }}
+                        <span>{{ form.gym.label_tag }}</span>
+                        {{ form.gym }}
+                        <span>{{ form.swimming_pool.label_tag }}</span>
+                        {{ form.swimming_pool }}
+                    </div>
+                </div>
+                
+
+                <div class="inputBox">
+                    <span>{{ form.furnishing.label_tag }}</span>
+                    {{ form.furnishing }}
+                </div>
+                <div class="inputBox">
+                    <span>{{ form.lot_size.label_tag }}</span>
+                    {{ form.lot_size }}
+                </div>
+                 
+                
+                <div class="inputBox">
+                    <span>{{ form.photo_main.label_tag }}</span>
+                    {{ form.photo_main }}
+                </div>
+                <div class="inputBox">
+                    <span>{{ form.photo_1.label_tag }}</span>
+                    {{ form.photo_1 }}
+                </div>
+                <div class="inputBox">
+                    <span>{{ form.photo_2.label_tag }}</span>
+                    {{ form.photo_2 }}
+                </div>
+                <div class="inputBox">
+                    <span>{{ form.photo_3.label_tag }}</span>
+                    {{ form.photo_3 }}
+                </div>
+                <div class="inputBox">
+                    <span>{{ form.photo_4.label_tag }}</span>
+                    {{ form.photo_4 }}
+                </div>
+
+                 <input type="submit" value="Upload" name="upload" class="btn" id="btn3"> 
+                    {% comment %} <div class="inputBox">
+                        <button type="submit">Submit</button>
+                    </div>
+                     {% endcomment %}
+      {% comment %} {% for f  in form %}
+                    <div class="inputBox">
+                        <span>{{ f.label_tag }}</span>
+                        {{ f }}
+                    </div>
+                {% endfor %} {% endcomment %}
+                {% comment %} <table>
+                {% for f  in form %}
+                    <tr><div class="inputBox invalid">
+                        <td>{{ f.label_tag }}</td>
+                        <td>{{ f }}</td>
+                        <tr></tr>
+                    {% comment %} <p></p> {% endcomment %}
+                    {% comment %} </div></tr>
+                {% endfor %}
+                <table> {% endcomment %} 
+           {% comment %} </div>
+        </div> {% endcomment %}
+    </section>
+    
+    {% include 'partials/footer.html' %}
+{% endblock %}

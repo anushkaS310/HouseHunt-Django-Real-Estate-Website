@@ -1,4 +1,263 @@
 *{
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+  list-style: none;
+  box-sizing: border-box;
+  
+}
+body{
+  font-family: 'Nunito', sans-serif;
+  background:url(../img/bluehouse.jpg) no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  
+}
+#home1{
+  display: flex;
+  flex-direction: column;
+  padding: 3px 200px;
+  height: 400px;
+  justify-content: center;
+  align-items: center;
+}
+
+
+#home1 h1{
+  color: rgb(17, 27, 41); 
+  text-align: center;
+  
+}
+#home p{
+  color: rgb(4, 65, 88);
+  
+  text-align: center;
+  font-size: 1.5rem;
+  font-family: 'Nunito', sans-serif;
+}
+
+.primary{
+color: aliceblue;
+font-family: 'Oswald', sans-serif;
+}
+
+section{
+  
+  padding: auto;
+}
+
+.btn{
+  
+  display: inline-block;
+ 
+  border-radius: .5rem;
+  font-size: 1.7rem;
+ 
+  background:var(--light-red);
+  cursor: pointer;
+  text-align: center;
+}
+
+
+
+.home{
+  
+  background-attachment: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.home form{
+ 
+  /* background:rgb(75, 98, 122); */
+  background:#EDF5E1;
+  border-radius: .5rem;
+  box-shadow: 0 .2rem 1rem #EDF5E1;
+  opacity: 0.89;
+  border:.1rem solid rgba(0,0,0,.2);
+  width:50rem;
+  padding:1rem;
+  margin-top: 80px;
+  font-family: 'Oswald', sans-serif;
+  
+}
+
+.home form h3{
+  text-align: center;
+  color:#05386B;
+  font-size: 2rem;
+  font-family: 'Oswald', sans-serif;
+}
+
+.home form .buttons-container{
+  display: flex;
+  width: 70%;
+  margin-left: 100px;
+  
+  gap:2.3rem;
+}
+
+/* .home form .buttons-container .btn{
+  flex:1;
+} */
+
+.home form .inputBox{
+  display: flex;
+  flex-wrap: wrap;
+  /* gap:0rem; */
+  margin-top: 0.2rem;
+}
+
+.home form .inputBox #locality{
+  margin-left: 20px;
+ width: 50%;
+}
+.home form .inputBox #city{
+  width: 40%;
+}
+
+.home form .inputBox input,
+.home form .inputBox select{
+  
+  /* width: 40%; */
+  margin-top: 20px;
+  margin-left: 1px;
+border-radius: 3px;
+border: 2px solid #0a0a0a;
+padding: 10px 6px;
+outline: none;
+}
+
+.home form .ask{
+  margin-left: 160px;
+margin-top: 20px;
+font-size: 1.5rem;
+color: #05386B;
+text-decoration: none;
+}
+
+#upload
+{
+color: #379683;
+}
+
+#upload:hover{
+  color: #5cd895;
+}
+.home form .btn{
+  font-family: 'Oswald', sans-serif;
+  width: 100%;
+  margin-top: 2rem;
+  /* background-color: #55cec8; */
+  background-color: #5cd895;
+}
+
+ #btn3{
+   margin-left: 250px;
+  width: 30%;
+  background: #05386B;
+  color: #EDF5E1;
+}
+#btn3:hover{
+  background-color: #379683;
+}
+.home form .btn:hover{
+background:  #379683;
+}
+
+#services{
+margin: 34px;
+margin-top: 110px;
+width: 20%;
+display:flex;
+font-family: 'Oswald', sans-serif;
+}
+#services .box{
+
+padding: 15px;
+margin:3px 6px;
+border-radius: 10px;
+background: #EDF5E1;
+font-family: 'Oswald', sans-serif;
+}
+
+#services .box:hover{
+  
+  box-shadow: 0 .1rem 1rem #EDF5E1;
+}
+#services .box img{
+
+border-radius: 10px;
+height: 150px;
+margin:auto;
+
+padding:0px;
+display: block;
+
+}
+
+.primary1{
+font-size: 3.8rem;
+padding: 12px;
+}
+.secondary{
+font-size: 2.8rem;
+padding: 12px;
+}
+.center{
+text-align: center;
+}
+
+.bt{
+background-color: #05386B;
+width: 40%;
+height: 25px;
+border-radius: 6px;
+color: azure;
+cursor: pointer;
+}
+.bt4{
+  background-color: #05386B;
+  width: 48%;
+  height: 25px;
+  border-radius: 6px;
+  color: azure;
+  cursor: pointer;
+  }
+  .bt4:hover{
+    background: #5cd895;
+    color:#05386B;
+    }
+.bt:hover{
+background: #5cd895;
+color:#05386B;
+}
+.last{
+background-color:#379683;
+padding-top: 15px;
+color: white;
+width: 100%;
+height: 60px;
+text-align: center;
+font-family: 'Oswald', sans-serif;
+}
+.services-container
+{
+  margin:5px 15%;
+}
+#services #box{
+
+  margin:5px 20px;
+}
+
+
+#services .box #price{
+   color:#05386B;
+}
+/* 
+/* *{
     padding: 0;
     margin: 0;
     text-decoration: none;
@@ -130,7 +389,7 @@
 }
 
 section{
-    /* padding:2rem 9%; */
+     padding:2rem 9%; 
     padding: auto;
 }
 
@@ -208,4 +467,4 @@ section{
 .home form .btn{
     width: 100%;
     margin-top: 2rem;
-}
+} */

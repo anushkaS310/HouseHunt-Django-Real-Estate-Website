@@ -1,7 +1,10 @@
 from django.shortcuts import redirect, render
 from django.contrib import messages
 from django.contrib.auth.models import User
+from property.models import Property
+from django.db.models import Q
 from django.contrib import auth
+from django.views.decorators.cache import cache_control
 def login(request):
     if request.method== 'POST':
         username=request.POST['username']
@@ -49,8 +52,14 @@ def register(request):
         return render(request,'accounts/register.html')
 
 def dashboard(request):
-    return render(request,'accounts/dashboard.html')
-
+    if request.user.is_authenticated:
+        properties=Property.objects.filter(Q(published=True) & Q(user_id=request.user.id,))
+        return render(request,'accounts/dashboard.html',{
+            "properties":properties,
+        })
+    else:
+        return redirect('homepage')
+@cache_control(no_cache=True,must_revalidate=True,no_store=True)
 def logout(request):
     auth.logout(request)
     return redirect ('homepage')

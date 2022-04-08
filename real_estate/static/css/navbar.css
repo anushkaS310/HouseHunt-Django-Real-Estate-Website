@@ -1,0 +1,51 @@
+*{
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+    font-family: 'Nunito', sans-serif;
+  }
+nav{
+    /* background: #55cec8; */
+    background: #379683;
+    height: 80px;
+    width: 100%;
+    box-shadow: 0 .2rem 1rem #05386B;
+  }
+  #logo{
+     padding: 3px 10px; 
+    margin-left: 30px;
+    margin-top: 15px;
+    display: inline-block;
+  } 
+  
+  label.title{
+    color: #05386B;
+    font-size: 35px;
+   
+    line-height: 80px;
+    font-family: 'Oswald', sans-serif;
+    font-weight: bold;
+  }
+
+
+  nav ul{
+    float: right;
+    margin-right: 20px;
+  }
+  nav ul li{
+    display: inline-block;
+    line-height: 80px;
+    margin: 0 5px;
+  }
+  nav ul li a{
+    color: white;
+    font-size: 17px;
+    padding: 7px 13px;
+    border-radius: 3px;
+    text-transform: uppercase;
+  }
+  nav ul li a:hover{
+    background-color: #05386B;
+  }

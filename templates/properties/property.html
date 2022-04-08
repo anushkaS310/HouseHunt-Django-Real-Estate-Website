@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+{% block style %}
+<link rel="stylesheet" href={% static 'css/property.css' %}>
+{% endblock  %}
+{% block title %}Properties{% endblock title %}
+{% block content %}
+
+    <div>
+
+                <div class="property details">
+                    <section class="featured" id="featured">
+
+                    
+                    
+                        <div class="box-container">
+                    
+                            <div class="box">
+                                <div class="location">
+                                    <h3>{{property.title}}</h3>
+                                    <p>{{property.address}},{{property.city}}, {{property.get_state_display}} , {{property.zipcode}}</p>
+                                </div>
+                                <div class="image-container">
+                                    <img src={{property.photo_main.url}} alt="" class="expand">
+                                    <div class="info">
+                                        <h3>3 days ago</h3>
+                                        <h3>for rent</h3>
+                                    </div>
+                                    {% comment %} <div class="icons">
+                                        <a href="#" class="fas fa-film"><h3>1</h3></a>
+                                        <a href="#" class="fas fa-camera"><h3>2</h3></a>
+                                    </div> {% endcomment %}
+                                </div>
+                                <div class="content">
+                                    <div class="price">
+                                        {% if property.type == "1" %}
+                                            <h3>Rs.{{property.price | intcomma}}</h3>
+                                        {% else %}
+                                            <h3>Rs.{{property.price | intcomma}} / mo</h3>
+                                        {% endif %}
+                                        {% comment %} <a href="#" class="fas fa-heart"></a>
+                                        <a href="#" class="fas fa-envelope"></a>
+                                        <a href="#" class="fas fa-phone"></a> {% endcomment %}
+                                    </div>
+                                
+                                    <div class="details">
+
+                                        <h3> <i class="fas fa-expand"></i> {{property.lot_size}} sqft </h3>
+                                        <h3> <i class="fas fa-bed"></i> {{property.bathroom}} beds </h3>
+                                        <h3> <i class="fas fa-bath"></i> {{property.bathroom}} baths </h3>
+                                        <h3><i class="fas fa-price"></i>{{property.description}}</h3>
+                                        <h3><i class="fas-fa-price"></i>{{property.get_furnishing_display}}</h3>
+
+                                    </div>
+                                    <div class="details">
+                                        <h3> <i class="fas fa-expand"></i>for {{property.get_type_display}}</h3>
+                                        <h3> <i class="fas fa-bed"></i> </h3>
+                                        <h3> <i class="fas fa-bath"></i> {{property.get_availibility_display}}</h3>
+                                        <h3><i class="fas fa-price"></i></h3>
+                                        <h3><i class="fas-fa-price"></i></h3>
+
+                                    </div>
+                                    <div class="buttons">
+                                        <a href="#" class="btn">Contact Owner</a>
+                                        <a href="#" class="btn">Bookmark</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                    </section>
+                </div>
+    </div>
+
+{% comment %} {% include 'partials/footer.html' %}  {% endcomment %}
+{% endblock content %}

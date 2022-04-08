@@ -1,16 +1,16 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href= {% static 'css/login.css' %}>
-    <title>LOGIN PAGE</title>
-</head>
-<body>
+{% block title %}
+Register
+{% endblock title %}
+
+{% block style %}
+<link rel="stylesheet" href={% static 'css/login.css' %}>
+{% endblock style %}
+
+{% block content %}
     
-    {% include 'partials/navbar.html'%}
+    
     <section>
         <div class="imgBox">
            <img src={% static 'img/login.jpg' %} alt="loginimg">
@@ -23,15 +23,13 @@
                 {% csrf_token %}
                     <div class="inputBox">
                         <span>Username</span>
-                        <input type="text" name="username">
+                        <input type="text" name="username" required>
                     </div>
                     <div class="inputBox">
                         <span>Password</span>
-                        <input type="password" name="password">
+                        <input type="password" name="password" required>
                     </div>
-                    <div class="remember">
-                        <label><input type="checkbox" name="Remember">Remember me</label>
-                    </div>
+                    
                     <div class="inputBox">
                         <input type="submit" value="Sign in" name="Sign in">
                     </div>
@@ -41,7 +39,7 @@
                         </p>
                     </div>
                </form>
-               <h3>Login with social media</h3>
+               {% comment %} <h3>Login with social media</h3> {% endcomment %}
                <ul class="sci">
                    <!-- <li><img src="linkedinlogo.png"></li> -->
                    <!-- <li><img src="twitterlogo.jpg"></li> -->
@@ -50,5 +48,5 @@
            </div>
         </div>
     </section>
-</body>
-</html>
+    {% include 'partials/footer.html'%}
+{% endblock %}

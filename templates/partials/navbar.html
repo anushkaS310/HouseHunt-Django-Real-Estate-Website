@@ -1,13 +1,25 @@
-<nav>
-    <input type="checkbox" id="check">
-    <label for="check" class="checkbtn">
-      <i class="fas fa-bars"></i>
-    </label>
-    <label class="logo">HOUSE HUNT</label>
-    <ul>
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+    <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+</head>
+<body>
+    <nav>
+      <div id="logo">
+        <img src="{% static 'img/log1.jpg' %}" alt="logo img">
+    </div>
+    <label class="title">HOUSE HUNT</label>
+      <ul>
         <li><a href={% url 'homepage' %}>HOME</a></li>
         {% if  user.is_authenticated %}
-        <li><a href={% url 'dashboard' %}>{{user.first_name}}DASHBOARD</a></li>
+        <li><a href={% url 'dashboard' %}>{{user.first_name}} DASHBOARD</a></li>
         <li><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
            {% comment %} <li><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
               form action="{% url 'logout' %}" method="POST">
@@ -19,7 +31,8 @@
         <li><a href={% url 'register' %}>REGISTER</a></li>
            
         {% endif %}
-            <li><a href="#contactus">CONTACT US</a></li>
-
-    </ul>
-  </nav>
+            <li><a href="#contactus">ABOUT US</a></li>
+      </ul>
+      </nav>
+</body>
+</html>

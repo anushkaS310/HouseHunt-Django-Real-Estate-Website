@@ -1,6 +1,7 @@
 
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.decorators import login_required
+from django.views import View
 from .form import PropertyForm
 from .models import Property
 from .dictionaries import type,fursnished,apartment_type,availibility,state_list
@@ -19,9 +20,13 @@ def property_list(request):
 
 def property(request,property_id):
     property=get_object_or_404(Property,pk=property_id)
-
+    bookmarks=request.session.get("bookmarks")
+    is_bookmarked=False
+    if bookmarks is not None:
+        is_bookmarked = property.id in bookmarks
     return render(request,'properties/property.html',{
-        "property":property
+        "property":property,
+        "is_bookmarked":is_bookmarked
     })
 
 
@@ -118,4 +123,33 @@ def search(request):
         "availibility":availibility,
         "entries":request.GET,
     })
+# @login_required(login_url='login')
+class BookmarkView(View):
+    def get(self,request):
+        bookmarks=request.session.get("bookmarks")
+        context={}
+
+        if bookmarks is None or len(bookmarks) == 0 :
+            context["property"] = []
+            context["check"] = False
+        else:
+            property=Property.objects.filter(id__in=bookmarks)
+            context["property"] = property
+            context["check"] = True
+        
+        return render(request,'accounts/dashboard.html',context)
+
+
+    def post(self,request):
+        bookmarks=request.session.get("bookmarks")
+        if bookmarks is None:
+            bookmarks=[]
+        pid=int(request.POST["property_id"])
+
+        if pid not in bookmarks:
+            bookmarks.append(pid)
+        else:
+            bookmarks.remove(pid)
+        request.session["bookmarks"]=bookmarks
+        return redirect("homepage")
 

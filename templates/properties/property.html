@@ -63,7 +63,19 @@
                                     </div>
                                     <div class="buttons">
                                         <a href="#" class="btn">Contact Owner</a>
-                                        <a href="#" class="btn">Bookmark</a>
+                                        <form action="{% url "bookmark" %}" method="POST">
+                                            {% csrf_token %}
+                                              <input type="hidden" value="{{property.id}}" name="property_id">
+                                            <button class="btn">
+                                                {% if is_bookmarked %}
+                                                UnBookmark
+                                                {% else %}
+                                                Bookmark
+                                                {% endif %}
+                                        
+                                            </button>
+                                          </form>
+        
                                     </div>
                                 </div>
                             </div>

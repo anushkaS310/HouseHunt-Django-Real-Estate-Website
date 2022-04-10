@@ -31,6 +31,28 @@ Hello {{user.first_name}}!
           </a>
         </div>                        
         {% endfor %}
+        {% if check %}
+        {% for lp in property %}
+        <div class="box" id="box">
+            <img src="{{lp.photo_main.url}}" alt="error in loading image">    
+            <div id="price">
+                {% if lp.type == "1" %}
+                    <h3>Rs.{{lp.price | intcomma}}</h3>
+                {% else %}
+                    <h3>Rs.{{lp.price | intcomma}} / mo</h3>
+                {% endif %} 
+            </div>
+            <div class="location">
+                <h3>{{lp.bathroom}}BHK flat</h3>
+                <p>{{lp.address}},{{ lp.get_state_display }},-{{lp.zipcode}}</p>
+            </div>
+          <a href="{% url 'property' lp.id %}">
+              <button class="bt">View</button>
+          </a>
+        </div>                        
+        {% endfor %}
+        {% endif %}
+        
     </div>
 </section>
 {% comment %} {% include 'partials/footer.html' %} {% endcomment %}

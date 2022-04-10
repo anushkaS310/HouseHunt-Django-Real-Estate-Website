@@ -5,6 +5,7 @@ from property.models import Property
 from django.db.models import Q
 from django.contrib import auth
 from django.views.decorators.cache import cache_control
+import re
 def login(request):
     if request.method== 'POST':
         username=request.POST['username']
@@ -30,36 +31,51 @@ def register(request):
         email=request.POST['email']
         password=request.POST['password']
         password2=request.POST['password2']
+        special_char = re.compile('[@_!#$%^&*()<>?/\|}{~:]')
+
         if password == password2:
             if User.objects.filter(username=username).exists():
                 messages.error(request,"Username already taken!")
                 return redirect('register')
             else:
-                if User.objects.filter(email= email).exists():
-                    messages.error(request,"email already in use!")
+                if special_char.search(first_name)!=None or special_char.search(last_name)!=None:
+                    messages.error(request,"Name must only contain alphabets!")
                     return redirect('register')
                 else:
-                    user=User.objects.create_user(username=username,password=password,email= email,
-                                                first_name=first_name,last_name=last_name)
-                    user.save()
-                    messages.success(
-                        request, 'You are now registered and can log in')
-                    return redirect('login')
+                    if User.objects.filter(email= email).exists():
+                        messages.error(request,"email already in use!")
+                        return redirect('register')
+                    else:
+                        user=User.objects.create_user(username=username,password=password,email= email,
+                                                    first_name=first_name,last_name=last_name)
+                        user.save()
+                        messages.success(
+                            request, 'You are now registered and can log in')
+                        return redirect('login')
+                
         else:
             messages.error(request,'Passwords do not match!')
             return redirect('register')
     else:
         return render(request,'accounts/register.html')
-
+@cache_control(no_cache=True,must_revalidate=True,no_store=True)
 def dashboard(request):
     if request.user.is_authenticated:
-        properties=Property.objects.filter(Q(published=True) & Q(user_id=request.user.id,))
-        return render(request,'accounts/dashboard.html',{
-            "properties":properties,
-        })
+        context={}
+        context["properties"]=Property.objects.filter(Q(published=True) & Q(user_id=request.user.id,))
+        bookmarks=request.session.get("bookmarks")
+        if bookmarks is None or len(bookmarks) == 0 :
+            context["property"] = []
+            context["check"] = False
+        else:
+            property=Property.objects.filter(id__in=bookmarks)
+            context["property"] = property
+            context["check"] = True
+
+        return render(request,'accounts/dashboard.html',context)
     else:
         return redirect('homepage')
-@cache_control(no_cache=True,must_revalidate=True,no_store=True)
+
 def logout(request):
     auth.logout(request)
     return redirect ('homepage')

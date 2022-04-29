@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block style %}
+<link rel="stylesheet" href={% static 'css/contact.css' %}>
+{% endblock style %}
+
+{% block content %}
+<div class="contact-box">
+    <h1>Contact Owner</h1>
+    <form action="{% url 'contact' %}" method="POST">
+        {% csrf_token %}
+        {% if user.is_authenticated %}
+          <input type="hidden" name="user_id" value="{{ user.id }}">
+        {% else %}
+          <input type="hidden" name="user_id" value="0">
+        {% endif %}
+        <input type="hidden" name="email" value="{{ property.user.email }}">
+        <input type="hidden" name="property_id" value="{{ property.id }}">
+
+        <input type="text" class="input-field" placeholder="Your Name"
+        {% if user.is_authenticated %} value="{{ user.first_name }} {{ user.last_name }}" {% endif %} 
+        required>
+
+        <input type="email" class="input-field" placeholder="Your Email" {% if user.is_authenticated %} value="{{ user.email }}" {% endif %} required>
+
+        <input type="text" class="input-field" placeholder="Subject">
+
+        <input type="text" class="input-field" placeholder="Your message">
+
+        <button  class="btn">Send</button>
+
+        </form>
+
+ </div>
+{% endblock content %}

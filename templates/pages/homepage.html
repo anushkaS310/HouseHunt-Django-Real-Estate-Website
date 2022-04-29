@@ -57,31 +57,37 @@
     
 </section>
 
-<section class="services-container">
+{% comment %} <section class="services-container">
 
-    <div  id="services">
-        {% for lp in latest_properties %}
-        <div class="box" id="box">
-            <img src="{{lp.photo_main.url}}" alt="error in loading image">    
-            <div id="price">
-                {% if lp.type == "1" %}
-                    <h3>Rs.{{lp.price | intcomma}}</h3>
-                {% else %}
-                    <h3>Rs.{{lp.price | intcomma}} / mo</h3>
-                {% endif %}
-                
-            </div>
-            <div class="location">
-                <h3>{{lp.bathroom}}BHK flat</h3>
-                <p>{{lp.address}},{{ lp.get_state_display }},-{{lp.zipcode}}</p>
-            </div>
-          <a href="{% url 'property' lp.id %}">
-              <button class="bt">View</button>
-          </a>
-        </div>                        
-        {% endfor %}
-    </div>
-</section>
+    <div  id="services"> {% endcomment %}
+        <div class="serve">
+            <div id="heading">
+                Recent Uploads
+            </div>    
+            <section class="container">
+                {% for lp in latest_properties %}
+                <div class="box" id="box">
+                    <img src="{{lp.photo_main.url}}" alt="error in loading image">    
+                    <div id="price">
+                        {% if lp.type == "1" %}
+                            <h3>Rs.{{lp.price | intcomma}}</h3>
+                        {% else %}
+                            <h3>Rs.{{lp.price | intcomma}} / mo</h3>
+                        {% endif %}
+                        
+                    </div>
+                    <div class="location">
+                        <h3>{{lp.bathroom}}BHK flat</h3>
+                        <p>{{lp.address}},{{ lp.get_state_display }},-{{lp.zipcode}}</p>
+                    </div>
+                    <a href="{% url 'property' lp.id %}">
+                        <button class="bt">View</button>
+                    </a>
+                </div>                        
+                {% endfor %}
+        
+            </section>
+        </div>
 {% include 'partials/footer.html' %}
 {% endblock content %}
 

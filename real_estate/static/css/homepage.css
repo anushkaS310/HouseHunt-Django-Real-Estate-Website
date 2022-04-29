@@ -256,6 +256,85 @@ font-family: 'Oswald', sans-serif;
 #services .box #price{
    color:#05386B;
 }
+.bt{
+  background-color: #05386B;
+  width: 40%;
+  height: 25px;
+  border-radius: 6px;
+  color: azure;
+  cursor: pointer;
+  }
+.bt:hover{
+background: #5cd895;
+color:#05386B;
+} 
+
+#heading{
+padding-top: 5px;
+font-family: "Trirong", serif;
+font-weight: bold;
+color:#05386B;
+font-size: 30px;
+display:flex;
+justify-content: center;
+}
+
+.container{
+margin-top: 5px;
+display:grid;
+grid-template-columns: repeat(4,auto);
+padding-left:10px;
+padding-right:10px;
+padding-bottom: 20px;
+
+
+}
+.container .box{
+height:350px;
+}
+.serve{
+
+background-color: #EDF5E1;
+border-radius: 10px;
+
+height:auto;
+margin-top: 100px;
+margin-bottom: 15px;
+opacity: 0.89;
+margin-left: 15px;
+margin-right: 15px;
+}
+
+.box{
+
+padding: 15px;
+margin:3px 6px;
+border-radius: 10px;
+background: white;
+font-family: 'Oswald', sans-serif;
+cursor:pointer;
+}
+
+.box:hover{
+box-shadow: 0 .1rem 1rem #05386B;
+}
+.box img{
+
+border-radius: 10px;
+height: 160px;
+margin:auto;
+transition: .2s linear;
+padding:0px;
+display: block;
+}    
+.box img:hover{
+transform:scale(1.1);
+}
+
+.box #price{
+margin-top: 40px;
+color:#05386B;
+}
 /* 
 /* *{
     padding: 0;

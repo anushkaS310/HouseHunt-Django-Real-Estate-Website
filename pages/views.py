@@ -15,3 +15,5 @@ def homepage(request):
             "entries":request.GET,
         }
     )
+def about(request):
+    return render(request,'pages/about.html')

@@ -1,0 +1,78 @@
+*{
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+    
+  }
+
+  #head{
+      text-align: center;
+      
+      color:#05386B;
+      font-weight: bold;
+  font-size: 2.2rem;
+  font-family: 'Oswald', sans-serif;
+      
+  }
+
+  .contentbox{
+    margin-top: 70px;
+      padding-top: 30px;
+      background-color: #EDF5E1;
+      border-radius: 20px;
+      height: 200px;
+      width: 50%;
+      margin-left: 325px;
+      box-shadow: 0 .2rem 1rem #05386B;
+      
+  }
+
+  .links{
+      padding-top: 50px;
+      text-decoration: none;
+      text-align: center;
+     cursor: pointer;
+  }
+  
+  #upload{
+    background-color:#379683;
+    color:#EDF5E1;
+    border-radius: .5rem;
+  font-size: 1.3rem;
+  margin-right: 20px;
+  padding:15px 15px;
+  }
+  .contentbox .links #upload:hover{
+    background-color: #5cd895;
+    color:black;
+  }
+
+  #bookmark{
+    background-color:#379683;
+    color:#EDF5E1;
+    border-radius: .5rem;
+    margin-left: 10px;
+    margin-right: 10px;
+  font-size: 1.3rem;
+  padding:15px 15px;
+  }
+  .contentbox .links #bookmark:hover{
+    background-color: #5cd895;
+    color:black;
+  }
+
+  #inquired{
+    background-color:#379683;
+    color:#EDF5E1;
+    border-radius: .5rem;
+  font-size: 1.3rem;
+  margin-left: 20px;
+  padding:15px 15px;
+  }
+  .contentbox .links #inquired:hover{
+    background-color: #5cd895;
+    color:black;
+  }
+  

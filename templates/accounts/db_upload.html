@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}
+Hello {{user.first_name}}!
+{% endblock title %}
+{% block style %}
+<link rel="stylesheet" href={% static 'css/db.css' %}>
+{% endblock style %}
+
+{% block content %}
+
+    <div class="container">
+      {% if properties %}
+        {% for lp in properties %}
+        <div class="box" id="box1">
+            <img src="{{lp.photo_main.url}}" alt="error in loading image">     
+            <div id="price">
+                {% if lp.type == "1" %}
+                    <h3>Rs.{{lp.price | intcomma}}</h3>
+                {% else %}
+                    <h3>Rs.{{lp.price | intcomma}} / mo</h3>
+                {% endif %}                 
+            </div>
+            <div class="location">
+                <h3>{{lp.bathroom}}BHK flat</h3>
+                <p>{{lp.address}},{{ lp.get_state_display }},-{{lp.zipcode}}</p>
+            </div>
+            <a href="{% url 'property' lp.id %}">
+                <button class="bt">View</button>
+            </a>
+            <form action="{% url "delete" %}" method="POST" class="btn">
+              {% csrf_token %}
+                <input type="hidden" value="{{lp.id}}" name="property_id">
+              <button class="bt">
+                 Delete
+              </button>
+            </form> 
+            <form action="{% url "edit" %}" method="POST" class="btn">
+              {% csrf_token %}
+                <input type="hidden" value="{{lp.id}}" name="property_id">
+              <button class="bt">
+                 Edit
+              </button>
+            </form> 
+        </div>
+        {% endfor %} 
+        {% else %}
+        <div id="result">
+          <h2>No uploads!</h2>
+      </div>
+        {% endif %}
+    <div>
+{% endblock content %}
+
+        {% comment %} <div class="box" id="box">
+               
+            <div id="price">
+                
+            </div>
+            <div class="location">
+                
+            </div>
+          
+          <a href="{% url 'delete' %}">
+            <input type="hidden" value="{{lp.id}}" name="property_id">
+            <button class="bt">Delete</button>
+         </a>  
+        </div>                        
+        {% endcomment %}
+{% comment %}         
+        
+    </div>
+</section> {% endcomment %} 
+

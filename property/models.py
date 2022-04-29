@@ -43,6 +43,7 @@ from django.contrib.auth.models import User
 class Property(models.Model):
     # user = models.ForeignKey(User,on_delete=models.CASCADE)
     user_id=models.IntegerField(models.ForeignKey("User", on_delete=models.CASCADE))
+    uid=models.ForeignKey(User, on_delete=models.CASCADE)
     # user_name=models.CharField(models.ForeignKey("User", on_delete=models.CASCADE),max_length=150)
     type=models.CharField(max_length=20,choices= type,default="Sell")
     published=models.BooleanField(default=True)
@@ -70,5 +71,5 @@ class Property(models.Model):
 
     @property
     def user(self):
-        return User.objects.get(pk=self.user_id)
+        return User.objects.get(pk=self.uid)
     

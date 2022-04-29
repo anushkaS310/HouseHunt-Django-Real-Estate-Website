@@ -58,11 +58,19 @@ def register(request):
             return redirect('register')
     else:
         return render(request,'accounts/register.html')
+
 @cache_control(no_cache=True,must_revalidate=True,no_store=True)
 def dashboard(request):
     if request.user.is_authenticated:
+        return render(request,'accounts/dashboard.html')
+    else:
+        return redirect('homepage')
+
+@cache_control(no_cache=True,must_revalidate=True,no_store=True)
+def db_upload(request):
+    if request.user.is_authenticated:
         context={}
-        context["properties"]=Property.objects.filter(Q(published=True) & Q(user_id=request.user.id,))
+        context["properties"]=Property.objects.filter(Q(published=True) & Q(uid=request.user.id,))
         bookmarks=request.session.get("bookmarks")
         if bookmarks is None or len(bookmarks) == 0 :
             context["property"] = []
@@ -71,10 +79,27 @@ def dashboard(request):
             property=Property.objects.filter(id__in=bookmarks)
             context["property"] = property
             context["check"] = True
-
-        return render(request,'accounts/dashboard.html',context)
+        return render(request,'accounts/db_upload.html',context)
     else:
         return redirect('homepage')
+
+@cache_control(no_cache=True,must_revalidate=True,no_store=True)
+def db_bookmark(request):
+    if request.user.is_authenticated:
+        context={}
+        bookmarks=request.session.get("bookmarks")
+        if bookmarks is None or len(bookmarks) == 0 :
+            context["property"] = []
+            context["check"] = False
+        else:
+            property=Property.objects.filter(Q(published=True)&Q(id__in=bookmarks))
+            context["property"] = property
+            context["check"] = True
+        return render(request,'accounts/db_bookmark.html',context)
+    else:
+        return redirect('homepage')
+
+    
 
 def logout(request):
     auth.logout(request)

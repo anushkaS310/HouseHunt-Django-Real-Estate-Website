@@ -1,0 +1,33 @@
+*{
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+    font-family: 'Nunito', sans-serif;
+  }
+#header{
+    background: #379683;
+    height: 80px;
+    width: 100%;
+    box-shadow: 0 .2rem 1rem #05386B;
+}
+  #logo{
+     padding: 3px 10px; 
+    margin-left: 30px;
+    margin-top: 15px;
+    display: inline-block;
+  } 
+  
+  label.title{
+    color: #05386B;
+    font-size: 35px;
+   
+    line-height: 80px;
+    font-family: 'Oswald', sans-serif;
+    font-weight: bold;
+  }
+
+.module h2, .module caption, .inline-group h2{
+    background: #379683;
+}

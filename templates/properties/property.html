@@ -4,7 +4,7 @@
 {% block style %}
 <link rel="stylesheet" href={% static 'css/property.css' %}>
 {% endblock  %}
-{% block title %}Properties{% endblock title %}
+{% block title %}{{property.title}}{% endblock title %}
 {% block content %}
 
     <div>
@@ -27,10 +27,12 @@
                                         <h3>3 days ago</h3>
                                         <h3>for rent</h3>
                                     </div>
-                                    {% comment %} <div class="icons">
-                                        <a href="#" class="fas fa-film"><h3>1</h3></a>
-                                        <a href="#" class="fas fa-camera"><h3>2</h3></a>
-                                    </div> {% endcomment %}
+                                    <div class="icons">
+                                        <a href="{{property.photo_2.url}}" class="fas fa-film"><h3>1</h3></a>
+                                        <a href="{{property.photo_3.url}}" class="fas fa-camera"><h3>2</h3></a>
+                                        <a href="{{property.photo_4.url}}" class="fas fa-film"><h3>3</h3></a>
+                                        <a href="{{property.photo_1.url}}" class="fas fa-camera"><h3>4</h3></a>
+                                    </div> 
                                 </div>
                                 <div class="content">
                                     <div class="price">
@@ -57,12 +59,12 @@
                                         <h3> <i class="fas fa-expand"></i>for {{property.get_type_display}}</h3>
                                         <h3> <i class="fas fa-bed"></i> </h3>
                                         <h3> <i class="fas fa-bath"></i> {{property.get_availibility_display}}</h3>
-                                        <h3><i class="fas fa-price"></i></h3>
+                                        <h3><i class="fas fa-price"></i>{{property.uid.email}}</h3>
                                         <h3><i class="fas-fa-price"></i></h3>
 
                                     </div>
                                     <div class="buttons">
-                                        <a href="#" class="btn">Contact Owner</a>
+                                        <a href="" class="btn">Contact Owner</a>
                                         <form action="{% url "bookmark" %}" method="POST">
                                             {% csrf_token %}
                                               <input type="hidden" value="{{property.id}}" name="property_id">
@@ -75,11 +77,41 @@
                                         
                                             </button>
                                           </form>
-        
                                     </div>
                                 </div>
-                            </div>
 
+                                    <div class="contact-box">
+                                        <h1>Contact Owner</h1>
+
+                                        {% include 'partials/alerts.html' %}
+                                        <form action="{% url 'contact' %}" method="POST">
+                                            {% csrf_token %}
+                                             {% if user.is_authenticated %}
+                                              <input type="hidden" name="user_id" value="{{ user.id }}">
+                                            {% else %}
+                                              <input type="hidden" name="user_id" value="0">
+                                            {% endif %} 
+                                             <input type="hidden" name="owner_email" value="{{ property.uid.email }}"> 
+                                             <input type="hidden" name="property_id" value="{{ property.id }}"> 
+                                             <input type="hidden" name="property" value="{{ property}}"> 
+                                    
+                                            <input type="text" class="input-field" placeholder="Your Name" name="name"
+                                            {% if user.is_authenticated %} value="{{ user.first_name }} {{ user.last_name }}" {% endif %} 
+                                            required>
+                                    
+                                            <input type="email" name="email"class="input-field" placeholder="Your Email" {% if user.is_authenticated %} value="{{ user.email }}" {% endif %} required>
+                                    
+                                            <input type="text" name="phone" class="input-field" placeholder="phone">
+                                    
+                                            <input type="text" name="message" class="input-field" placeholder="Your message">
+                                    
+                                            <button class="btn">Send</button>
+                                    
+                                            </form>
+                                    
+                                     </div>
+                                </div>
+                    
                     </section>
                 </div>
     </div>

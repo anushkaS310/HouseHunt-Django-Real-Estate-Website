@@ -1,0 +1,12 @@
+{% extends 'admin/base.html' %}
+{% load static %}
+{% block extrastyle %}
+<link rel="stylesheet" href="{% static 'css/admin.css' %}">
+{% endblock extrastyle %}
+{% block branding %}
+
+<div id="logo">
+    <img src="{% static 'img/log1.jpg' %}" alt="logo img">
+</div>
+<label class="title">HOUSE HUNT</label>
+{% endblock branding %}

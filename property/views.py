@@ -7,13 +7,29 @@ from .models import Property
 from .dictionaries import type,fursnished,apartment_type,availibility,state_list
 from django.core.paginator import EmptyPage,PageNotAnInteger,Paginator
 from django.db.models import Q
+
+def edit(request):
+    if request.method=='POST':
+        property=Property.objects.get(id=request.POST['property_id'])
+        form =PropertyForm(instance=property)
+        return render(request,'properties/upload_form.html',{
+        "form":form,
+    })
+
+def delete(request):
+    if request.method=="POST":
+        p=Property.objects.get(id=request.POST['property_id'])
+        p.published=False
+        p.save()
+        print(p.published)
+    return redirect('dashboard')
+
 def property_list(request):
     properties=Property.objects.filter(published=True)
     print(properties[1].photo_main)
     paginator=Paginator(properties,3)
     page=request.GET.get('page')
     paged_properties=paginator.get_page(page)
-
     return render(request,'properties/properties_list.html',{
         "properties":properties,
     })
@@ -38,6 +54,7 @@ def upload(request):
             print(request.FILES["photo_main"])
             property= Property(
                 user_id=request.user.id,
+                uid=request.user,
                 # user_name=request.user.first_name,
                 title=form.cleaned_data['title'],
                 type=form.cleaned_data['type'],
@@ -70,7 +87,8 @@ def upload(request):
     })
 
 def search(request):
-    properties=Property.objects.order_by('-list_date')
+    properties=Property.objects.filter(published=True).order_by('-list_date')
+    
     if 'type' in request.GET:
         type=request.GET['type']
         if type:
@@ -133,11 +151,11 @@ class BookmarkView(View):
             context["property"] = []
             context["check"] = False
         else:
-            property=Property.objects.filter(id__in=bookmarks)
+            property=Property.objects.filter(Q(published=True)&Q(id__in=bookmarks)) 
             context["property"] = property
             context["check"] = True
         
-        return render(request,'accounts/dashboard.html',context)
+        return render(request,'accounts/db_bookmark.html',context)
 
 
     def post(self,request):

@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+{% block style %}
+<link rel="stylesheet" href={% static 'css/about.css' %}>
+{% endblock  %}
+{% block title %}About Us{% endblock title %}
+{% block content %}
+    
+    <div class="container1">
+        <div id="heading">
+            <h2>
+                About us
+            </h2>
+        </div>
+        <div id="para">
+
+            <p>     <span>HOUSE HUNT</span> is a website that aims to make the process of searching property for renting or buying
+                labour-saving, cost-effective, and time-efficient.<br>The Real Estate website, HOUSE HUNT, is developed for
+                the purpose of providing a platform where the properties for selling and renting can be listed. <br> This project is designed for the purpose to reduce the charges the broker spent while renting
+                or buying a house.<br>
+                 Through this website the tenant or buyer can search property on the basis of his
+                requirements without wandering around thus saving his invaluable time.<br>
+               
+            </p><br>
+            <p>
+                Contact us at:
+                <a id="mail" href="mailto:househunt123bv@gmail.com">househunt123bv@gmail.com</a>
+            </p>
+
+        </div>
+
+    </div>
+    <section class="container">
+        <div class="box" id="box1">
+            <img src={% static 'img/anukriti1.jpg' %} alt="">
+            <h1>Anukriti Srivastava</h1>
+            <h3>Team Member</h3>
+        </div>
+        <div class="box" id="box1">
+            <img src={% static 'img/anushka_photo.jpg' %} alt="">
+            <h1>Anushka Srivastava</h1>
+            <h3>Team Member</h3>
+        </div>
+        <div class="box" id="box1">
+            <img src={% static 'img/janvi.jpg' %} alt="">
+            <h1>Janhavi Singh</h1>
+            <h3>Team Member</h3>
+        </div>
+    </section>
+    {% include 'partials/footer.html' %}
+{% endblock %}
